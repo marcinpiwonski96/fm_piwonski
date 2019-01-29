@@ -19,7 +19,10 @@
 		26333F1021FF3FD200C17FD5 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F0F21FF3FD200C17FD5 /* Endpoint.swift */; };
 		26333F1221FF41F100C17FD5 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F1121FF41F100C17FD5 /* NetworkingManager.swift */; };
 		26333F1621FF795D00C17FD5 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F1521FF795C00C17FD5 /* DataTableViewCell.swift */; };
-		26333F1B21FFBF0800C17FD5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F1A21FFBF0800C17FD5 /* UIViewExtension.swift */; };
+		26333F1B21FFBF0800C17FD5 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F1A21FFBF0800C17FD5 /* UIImageViewExtension.swift */; };
+		26333F1D2200700900C17FD5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F1C2200700900C17FD5 /* BaseViewController.swift */; };
+		26333F292200E1C100C17FD5 /* CachingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F282200E1C100C17FD5 /* CachingKey.swift */; };
+		26333F2B2200E9D100C17FD5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26333F2A2200E9D100C17FD5 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +61,10 @@
 		26333F0F21FF3FD200C17FD5 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		26333F1121FF41F100C17FD5 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		26333F1521FF795C00C17FD5 /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
-		26333F1A21FFBF0800C17FD5 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		26333F1A21FFBF0800C17FD5 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		26333F1C2200700900C17FD5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		26333F282200E1C100C17FD5 /* CachingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingKey.swift; sourceTree = "<group>"; };
+		26333F2A2200E9D100C17FD5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,7 @@
 				26333EDC21FF3D2E00C17FD5 /* AppDelegate.swift */,
 				26333EE021FF3D2E00C17FD5 /* Main.storyboard */,
 				26333EE621FF3D3100C17FD5 /* Assets.xcassets */,
+				26333F2A2200E9D100C17FD5 /* Colors.xcassets */,
 				26333EE821FF3D3100C17FD5 /* LaunchScreen.storyboard */,
 				26333EEB21FF3D3100C17FD5 /* Info.plist */,
 				26333EE321FF3D2E00C17FD5 /* futureMind_recruitmentTask.xcdatamodeld */,
@@ -155,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				26333F0D21FF3D8B00C17FD5 /* CellData.swift */,
+				26333F282200E1C100C17FD5 /* CachingKey.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -171,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				26333EDE21FF3D2E00C17FD5 /* ViewController.swift */,
+				26333F1C2200700900C17FD5 /* BaseViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -178,7 +187,7 @@
 		26333F1921FFBEF200C17FD5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				26333F1A21FFBF0800C17FD5 /* UIViewExtension.swift */,
+				26333F1A21FFBF0800C17FD5 /* UIImageViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -288,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26333EEA21FF3D3100C17FD5 /* LaunchScreen.storyboard in Resources */,
+				26333F2B2200E9D100C17FD5 /* Colors.xcassets in Resources */,
 				26333EE721FF3D3100C17FD5 /* Assets.xcassets in Resources */,
 				26333EE221FF3D2E00C17FD5 /* Main.storyboard in Resources */,
 			);
@@ -319,8 +329,10 @@
 				26333EDD21FF3D2E00C17FD5 /* AppDelegate.swift in Sources */,
 				26333F1221FF41F100C17FD5 /* NetworkingManager.swift in Sources */,
 				26333F0E21FF3D8B00C17FD5 /* CellData.swift in Sources */,
+				26333F1D2200700900C17FD5 /* BaseViewController.swift in Sources */,
 				26333F1621FF795D00C17FD5 /* DataTableViewCell.swift in Sources */,
-				26333F1B21FFBF0800C17FD5 /* UIViewExtension.swift in Sources */,
+				26333F292200E1C100C17FD5 /* CachingKey.swift in Sources */,
+				26333F1B21FFBF0800C17FD5 /* UIImageViewExtension.swift in Sources */,
 				26333F1021FF3FD200C17FD5 /* Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

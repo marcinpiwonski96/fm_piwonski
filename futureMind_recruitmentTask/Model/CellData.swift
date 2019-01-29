@@ -6,7 +6,7 @@
 //  Copyright © 2019 Marcin Piwoński. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class CellData : Codable {
     
@@ -26,7 +26,7 @@ class CellData : Codable {
         //split description string into array, drop last value (url)
         let split = fullDescription.split(separator: "\t").dropLast()
         
-        //for a situation, where \t appears not only directly before url, but also within contents of description
+        //for an (unlikely) situation, where \t appears not only directly before url, but also within contents of description
         //connects all the strings in split array together
         return split.reduce("") { "\($0) \($1)" }
     }
@@ -38,10 +38,8 @@ class CellData : Codable {
         }
         
         return String(urlString)
-        
     }
     
-
 }
 
 extension CellData {

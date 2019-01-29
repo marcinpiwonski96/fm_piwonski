@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class ViewController: UIViewController {
+class ViewController: BaseViewController {
     
     var items = [CellData]()
     var refreshControl = UIRefreshControl()
@@ -18,19 +18,20 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //TODO :- refactor
+        
+        displaySpinner(onView: tableView)
+        setupRefreshControl()
+        setupTableView()
+        //initial data request for when the view loads
+        performDataRequest()
+    }
+    
+   
+    private func setupRefreshControl(){
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        
-        //for dynamically resizing cells
-        setupTableView()
-        
-
-        performDataRequest()
-
     }
     
     @objc func refresh(_ sender : Any){
@@ -46,48 +47,36 @@ class ViewController: UIViewController {
                 [unowned self]
                 result in
                 let finalResult = result as! [CellData]
-                self.updateTableView(with: finalResult)
+                self.updateData(with: finalResult)
+                self.removeSpinner()
                                         
             },
             onFailure: {
                 [unowned self]
                 error in
                 print(error)
+                self.removeSpinner()
                 self.showAlertWithError(error)
             }
         )
     }
     
-    private func updateTableView(with result: [CellData]){
-        
-        //TODO :- check if item already exists
+    private func updateData(with result: [CellData]){
         
         self.items += result
         //sort by orderId
         self.items = self.items.sorted(by: { $0.orderId < $1.orderId })
-        self.items.forEach { (cell) in
-            print(cell.orderId)
-        }
-        print("count:\(self.items.count)")
+       
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
-            
         }
-        //TODO :- updateCoreData
-    }
-    
-    private func showAlertWithError(_ error: Error){
-        
-        let alert = UIAlertController.init(title: "Couldn't fetch data", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction.init(title: "OK", style: .default))
-        self.present(alert, animated: true)
     }
 }
 
 extension ViewController : UITableViewDelegate, UITableViewDataSource{
     
-    
+    //for dynamically resizing cells
     func setupTableView(){
         tableView.dataSource = self
         tableView.delegate = self
@@ -104,6 +93,13 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource{
         let item = items[indexPath.row]
         cell.setup(withItem : item)
         
+        if indexPath.row % 2 == 0{
+            cell.contentView.backgroundColor = UIColor(named: "Accent")
+        } else {
+            cell.contentView.backgroundColor = UIColor(named: "Accent2")
+        }
+        
+        
         return cell
     }
     
@@ -113,17 +109,14 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = items[indexPath.row]
         guard let urlString = item.urlString, let url = URL(string: urlString) else{
-            //no url
+            self.showAlertWithError(NetworkingError.URLNotValid)
             return
         }
         startWebView(url)
-        
     }
     
     private func startWebView(_ url: URL){
         let vc = SFSafariViewController(url: url)
-        self.present(vc, animated: true, completion: nil)
-        print(url)
+        self.present(vc, animated: true)
     }
-
 }
