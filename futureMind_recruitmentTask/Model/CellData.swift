@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CellData : Codable {
+class CellData : Codable {
     
     var fullDescription : String
     var title : String
@@ -18,17 +18,6 @@ struct CellData : Codable {
     
     var imageUrl : URL? {
         return URL(string: imageUrlString)
-    }
-    
-    //convert to Date format (if possible)
-    var modificationDate : Date? {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        guard let date = formatter.date(from: modificationDateString) else {
-            return nil
-        }
-        return date
     }
     
     // there is a pattern, where \t appears before url at the end of description, I am using this as a separator
@@ -51,6 +40,7 @@ struct CellData : Codable {
         return String(urlString)
         
     }
+    
 
 }
 

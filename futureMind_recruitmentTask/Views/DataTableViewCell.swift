@@ -10,16 +10,34 @@ import UIKit
 
 class DataTableViewCell: UITableViewCell {
 
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
+    
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var pictureView: UIImageView!
+    @IBOutlet weak var modifiedLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    override func awakeFromNib() {
+                super.awakeFromNib()
+    }
+    
+    
+    func setup(withItem item : CellData){
+        self.titleLabel.text = item.title
+        self.modifiedLabel.text = "Modified: \(item.modificationDateString)"
+        self.descriptionLabel.text = item.descriptionOnly
+        
+        guard let _ = URL(string: item.imageUrlString) else{
+            return
+        }
+        
+        //download image, with caching
+        self.pictureView.imageFromServerURL(urlString: item.imageUrlString)
+        
+        
+    }
+    
+    
     
     
 

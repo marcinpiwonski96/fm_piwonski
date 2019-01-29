@@ -19,6 +19,7 @@
 		26333F1021FF3FD200C17FD5 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F0F21FF3FD200C17FD5 /* Endpoint.swift */; };
 		26333F1221FF41F100C17FD5 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F1121FF41F100C17FD5 /* NetworkingManager.swift */; };
 		26333F1621FF795D00C17FD5 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F1521FF795C00C17FD5 /* DataTableViewCell.swift */; };
+		26333F1B21FFBF0800C17FD5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F1A21FFBF0800C17FD5 /* UIViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		26333F0F21FF3FD200C17FD5 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		26333F1121FF41F100C17FD5 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		26333F1521FF795C00C17FD5 /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
+		26333F1A21FFBF0800C17FD5 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,11 +109,12 @@
 		26333EDB21FF3D2E00C17FD5 /* futureMind_recruitmentTask */ = {
 			isa = PBXGroup;
 			children = (
+				26333F1921FFBEF200C17FD5 /* Extensions */,
 				26333F1721FF796100C17FD5 /* Views */,
 				26333F1321FF76B100C17FD5 /* Networking */,
 				26333F1421FF76BF00C17FD5 /* Model */,
+				26333F1821FFA2A200C17FD5 /* Controllers */,
 				26333EDC21FF3D2E00C17FD5 /* AppDelegate.swift */,
-				26333EDE21FF3D2E00C17FD5 /* ViewController.swift */,
 				26333EE021FF3D2E00C17FD5 /* Main.storyboard */,
 				26333EE621FF3D3100C17FD5 /* Assets.xcassets */,
 				26333EE821FF3D3100C17FD5 /* LaunchScreen.storyboard */,
@@ -162,6 +165,22 @@
 				26333F1521FF795C00C17FD5 /* DataTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		26333F1821FFA2A200C17FD5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				26333EDE21FF3D2E00C17FD5 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		26333F1921FFBEF200C17FD5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				26333F1A21FFBF0800C17FD5 /* UIViewExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +320,7 @@
 				26333F1221FF41F100C17FD5 /* NetworkingManager.swift in Sources */,
 				26333F0E21FF3D8B00C17FD5 /* CellData.swift in Sources */,
 				26333F1621FF795D00C17FD5 /* DataTableViewCell.swift in Sources */,
+				26333F1B21FFBF0800C17FD5 /* UIViewExtension.swift in Sources */,
 				26333F1021FF3FD200C17FD5 /* Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
