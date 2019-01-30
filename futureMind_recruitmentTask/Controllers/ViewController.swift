@@ -7,29 +7,46 @@
 //
 
 import UIKit
-import SafariServices
+import CoreData
 
 class ViewController: BaseViewController {
     
-    var items = [CellData]()
     var refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        displaySpinner(onView: tableView)
+        fireRequestOnFirstLaunch()
         setupRefreshControl()
         setupTableView()
-        //initial data request for when the view loads
-        performDataRequest()
+        
     }
     
-   
+    //show spinner on first launch of the app, perform initial request
+    func fireRequestOnFirstLaunch(){
+        do {
+            try self.fetchedResultController.performFetch()
+            let objectsNumber = self.fetchedResultController.sections?[0].numberOfObjects
+            if let objectsNo = objectsNumber {
+                if objectsNo == 0 {
+                    displaySpinner(onView: self.view)
+                    //initial data request for when the view loads
+                    performDataRequest()
+                }
+            }
+        } catch let error  {
+            print("ERROR: \(error)")
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        imageCache.removeAllObjects()
+    }
+    
     private func setupRefreshControl(){
         refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to fetch new")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
     }
@@ -40,83 +57,29 @@ class ViewController: BaseViewController {
     
     private func performDataRequest(){
         
-        NetworkingManager.basicRequest(
-            endpoint: Endpoint.recruitmentTask(),
-            
-            onSuccess: {
-                [unowned self]
-                result in
-                let finalResult = result as! [CellData]
-                self.updateData(with: finalResult)
-                self.removeSpinner()
-                                        
-            },
-            onFailure: {
-                [unowned self]
-                error in
-                print(error)
-                self.removeSpinner()
+        NetworkingManager.basicRequest(endpoint: Endpoint.recruitmentTask()) {
+            [unowned self]
+            (result) in
+            switch result{
+            case .success(let data):
+                self.saveInCoreDataWithArray(array: data)
+            case .failure(let error):
                 self.showAlertWithError(error)
             }
-        )
-    }
-    
-    private func updateData(with result: [CellData]){
-        
-        self.items += result
-        //sort by orderId
-        self.items = self.items.sorted(by: { $0.orderId < $1.orderId })
-       
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.refreshControl.endRefreshing()
+            
+            DispatchQueue.main.async {
+                self.removeSpinner()
+                self.refreshControl.endRefreshing()
+            }
         }
     }
+        
+    lazy var fetchedResultController : NSFetchedResultsController<NSFetchRequestResult> = {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: DataModel.self))
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key:String(describing: "orderId"),ascending: true)]
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        frc.delegate = self
+        return frc
+    }()
 }
 
-extension ViewController : UITableViewDelegate, UITableViewDataSource{
-    
-    //for dynamically resizing cells
-    func setupTableView(){
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 600
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "dataCell", for: indexPath) as! DataTableViewCell
-        let item = items[indexPath.row]
-        cell.setup(withItem : item)
-        
-        if indexPath.row % 2 == 0{
-            cell.contentView.backgroundColor = UIColor(named: "Accent")
-        } else {
-            cell.contentView.backgroundColor = UIColor(named: "Accent2")
-        }
-        
-        
-        return cell
-    }
-    
-
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = items[indexPath.row]
-        guard let urlString = item.urlString, let url = URL(string: urlString) else{
-            self.showAlertWithError(NetworkingError.URLNotValid)
-            return
-        }
-        startWebView(url)
-    }
-    
-    private func startWebView(_ url: URL){
-        let vc = SFSafariViewController(url: url)
-        self.present(vc, animated: true)
-    }
-}

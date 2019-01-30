@@ -5,7 +5,7 @@ import Foundation
 //However, implementing SOME caching behavior is very important, as the structure we're working with is a fast-growing tableView.
 //the sollution is to find some additional variables that describes the image and bind it with URL.
 //This additional variables are in this case title and modificationDate. It is very very unlikely, that two different images from the same URL would have the same title and modificationDate
-//For this reason popular frameworks, like AlamofireImage couldn't have been used - they take under consideration only the URL of the image, hence caching didn't work properly.
+//For this reason popular frameworks, like AlamofireImage couldn't have been used - they take under consideration only the URL of the image, hence caching won't work properly.
 class CachingKey : Equatable {
     
     let urlString : String

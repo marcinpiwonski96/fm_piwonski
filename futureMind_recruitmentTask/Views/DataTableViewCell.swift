@@ -12,7 +12,12 @@ class DataTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var pictureView: ImageViewFromUrl!
+    @IBOutlet weak var pictureView: ImageViewFromUrl! {
+        didSet{
+            pictureView.layer.masksToBounds = true
+            pictureView.layer.cornerRadius = 40
+        }
+    }
     @IBOutlet weak var modifiedLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
@@ -21,20 +26,14 @@ class DataTableViewCell: UITableViewCell {
     }
     
     
-    func setup(withItem item : CellData){
-        self.titleLabel.text = item.title
-        self.modifiedLabel.text = "Modified: \(item.modificationDateString)"
-        self.descriptionLabel.text = item.descriptionOnly
+    func setup(withData data : DataModel){
+        self.titleLabel.text = data.title
+        self.modifiedLabel.text = "Modified: \(data.modificationDate)"
+        self.descriptionLabel.text = data.descriptionOnly
        
-        let cachingKey = CachingKey(urlString: item.imageUrlString, title: item.title, modificationDate: item.modificationDateString)
+        let cachingKey = CachingKey(urlString: data.imageUrlString, title: data.title, modificationDate: data.modificationDate)
 
         self.pictureView.imageFromServerWitchCachingKey(cachingKey)
-       
-        
     }
-    
-    
-    
-    
 
 }

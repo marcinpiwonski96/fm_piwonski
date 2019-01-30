@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class BaseViewController: UIViewController {
 
@@ -16,19 +17,23 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
     }
     
-func showAlertWithError(_ error: Error){
+    func showAlertWithError(_ error: Error){
         let alert = UIAlertController.init(title: "Couldn't fetch data", message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(UIAlertAction.init(title: "OK", style: .default))
-        self.present(alert, animated: true)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
     }
     
     func displaySpinner(onView : UIView){
         guard self.spinner == nil else {
             return
         }
+        
         let spinnerView = UIView.init(frame: onView.bounds)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         let ai = UIActivityIndicatorView.init(style: .whiteLarge)
+        
         ai.startAnimating()
         ai.center = spinnerView.center
         
@@ -36,7 +41,7 @@ func showAlertWithError(_ error: Error){
             spinnerView.addSubview(ai)
             onView.addSubview(spinnerView)
         }
-        
+    
         self.spinner = spinnerView
     }
     
@@ -47,6 +52,11 @@ func showAlertWithError(_ error: Error){
             }
             self.spinner = nil
         }
+    }
+    
+    func startWebView(_ url: URL){
+        let vc = SFSafariViewController(url: url)
+        self.present(vc, animated: true)
     }
     
 }

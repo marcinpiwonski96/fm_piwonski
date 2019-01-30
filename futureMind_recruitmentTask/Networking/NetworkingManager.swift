@@ -11,15 +11,21 @@ import Foundation
 enum NetworkingError : Error {
     case URLNotValid
     case NoData
+    case DecodingError
+}
+
+enum Result<Value> {
+    case success(Value)
+    case failure(Error)
 }
 
 struct NetworkingManager {
     
-    static func basicRequest(endpoint : Endpoint, onSuccess: @escaping (Any)->Void, onFailure: @escaping (Error) -> Void) {
+    static func basicRequest(endpoint : Endpoint, completionHandler: @escaping (Result<[[String:Any]]>) -> Void) {
         
         guard let url = endpoint.url else {
             print("not a valid url")
-            onFailure(NetworkingError.URLNotValid)
+            completionHandler(.failure(NetworkingError.URLNotValid))
             return
         }
         
@@ -29,23 +35,24 @@ struct NetworkingManager {
             
             if let error = error {
                 print(error.localizedDescription)
-                onFailure(error)
+                completionHandler(.failure(error))
                 return
             }
             
             guard let data = data else {
-                print("no data")
-                onFailure(NetworkingError.NoData)
+                completionHandler(.failure(NetworkingError.NoData))
                 return
             }
-            
-            guard let responseData = try? JSONDecoder().decode([CellData].self, from: data) else {
-                print("decoding error")
-                return
+            do{
+                guard let responseArray = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers]) as? [[String: Any]] else {
+                    completionHandler(.failure(NetworkingError.DecodingError))
+                    return
+                }
+                completionHandler(.success(responseArray))
+                
+            } catch let error {
+                completionHandler(.failure(error))
             }
-            
-            onSuccess(responseData)
-            
         }
         dataTask.resume()
     }

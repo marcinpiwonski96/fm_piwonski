@@ -20,23 +20,24 @@ class ImageViewFromUrl : UIImageView {
         
         if let imageFromCache = imageCache.object(forKey: cachingKey.toNSStringCachingKey()) {
             self.image = imageFromCache
-            print("cached")
+        
             return
         }
-        
         
         guard let url = URL(string: cachingKey.urlString) else {
             print("url not valid")
             return
         }
 
+        let activityIndicator = UIActivityIndicatorView(style: .white)
+        activityIndicator.center = self.center
+        activityIndicator.startAnimating()
+        self.addSubview(activityIndicator)
         
         URLSession.shared.dataTask(with: url, completionHandler: {
             (data, response, error) -> Void in
-            print("fired title \(cachingKey.title)")
 
                 if error != nil {
-                    print("\(String(describing: error))")
                     return
                 }
                 if let downloadedImage = UIImage(data: data!) {
@@ -45,17 +46,15 @@ class ImageViewFromUrl : UIImageView {
                         if self.cachingKeyToCheck == cachingKey {
                             self.image = downloadedImage
                             self.alpha = 0
-                            UIView.animate(withDuration: 0.5, animations: {
+                            UIView.animate(withDuration: 0.3, animations: {
                                 self.alpha = 1
                             })
-                            
+                            activityIndicator.stopAnimating()
+                            activityIndicator.removeFromSuperview()
                         }
-                        
                     })
                     
-                    print("caching for key (\(cachingKey.toNSStringCachingKey()))")
                     imageCache.setObject(downloadedImage, forKey: cachingKey.toNSStringCachingKey())
-                    
             }
             
         }).resume()

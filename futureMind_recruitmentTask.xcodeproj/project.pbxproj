@@ -13,9 +13,6 @@
 		26333EE521FF3D2E00C17FD5 /* futureMind_recruitmentTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26333EE321FF3D2E00C17FD5 /* futureMind_recruitmentTask.xcdatamodeld */; };
 		26333EE721FF3D3100C17FD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26333EE621FF3D3100C17FD5 /* Assets.xcassets */; };
 		26333EEA21FF3D3100C17FD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26333EE821FF3D3100C17FD5 /* LaunchScreen.storyboard */; };
-		26333EF521FF3D3100C17FD5 /* futureMind_recruitmentTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333EF421FF3D3100C17FD5 /* futureMind_recruitmentTaskTests.swift */; };
-		26333F0021FF3D3100C17FD5 /* futureMind_recruitmentTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333EFF21FF3D3100C17FD5 /* futureMind_recruitmentTaskUITests.swift */; };
-		26333F0E21FF3D8B00C17FD5 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F0D21FF3D8B00C17FD5 /* CellData.swift */; };
 		26333F1021FF3FD200C17FD5 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F0F21FF3FD200C17FD5 /* Endpoint.swift */; };
 		26333F1221FF41F100C17FD5 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F1121FF41F100C17FD5 /* NetworkingManager.swift */; };
 		26333F1621FF795D00C17FD5 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F1521FF795C00C17FD5 /* DataTableViewCell.swift */; };
@@ -23,6 +20,13 @@
 		26333F1D2200700900C17FD5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F1C2200700900C17FD5 /* BaseViewController.swift */; };
 		26333F292200E1C100C17FD5 /* CachingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F282200E1C100C17FD5 /* CachingKey.swift */; };
 		26333F2B2200E9D100C17FD5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26333F2A2200E9D100C17FD5 /* Colors.xcassets */; };
+		26333F2E22010CD700C17FD5 /* DataModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F2C22010CD700C17FD5 /* DataModel+CoreDataClass.swift */; };
+		26333F2F22010CD700C17FD5 /* DataModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F2D22010CD700C17FD5 /* DataModel+CoreDataProperties.swift */; };
+		26333F312201E44A00C17FD5 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F302201E44A00C17FD5 /* CoreDataStack.swift */; };
+		26333F3322020B6200C17FD5 /* JSONKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F3222020B6200C17FD5 /* JSONKeys.swift */; };
+		26333F35220219F100C17FD5 /* ViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F34220219F100C17FD5 /* ViewControllerTableViewDelegate.swift */; };
+		26333F3722021A2000C17FD5 /* ViewControllerCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F3622021A2000C17FD5 /* ViewControllerCoreData.swift */; };
+		26333F3A22024AFA00C17FD5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26333F3922024AF900C17FD5 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,12 +56,7 @@
 		26333EE921FF3D3100C17FD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26333EEB21FF3D3100C17FD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26333EF021FF3D3100C17FD5 /* futureMind_recruitmentTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = futureMind_recruitmentTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		26333EF421FF3D3100C17FD5 /* futureMind_recruitmentTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = futureMind_recruitmentTaskTests.swift; sourceTree = "<group>"; };
-		26333EF621FF3D3100C17FD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26333EFB21FF3D3100C17FD5 /* futureMind_recruitmentTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = futureMind_recruitmentTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		26333EFF21FF3D3100C17FD5 /* futureMind_recruitmentTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = futureMind_recruitmentTaskUITests.swift; sourceTree = "<group>"; };
-		26333F0121FF3D3100C17FD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		26333F0D21FF3D8B00C17FD5 /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
 		26333F0F21FF3FD200C17FD5 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		26333F1121FF41F100C17FD5 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		26333F1521FF795C00C17FD5 /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
@@ -65,6 +64,13 @@
 		26333F1C2200700900C17FD5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		26333F282200E1C100C17FD5 /* CachingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingKey.swift; sourceTree = "<group>"; };
 		26333F2A2200E9D100C17FD5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		26333F2C22010CD700C17FD5 /* DataModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		26333F2D22010CD700C17FD5 /* DataModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		26333F302201E44A00C17FD5 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		26333F3222020B6200C17FD5 /* JSONKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONKeys.swift; sourceTree = "<group>"; };
+		26333F34220219F100C17FD5 /* ViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
+		26333F3622021A2000C17FD5 /* ViewControllerCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCoreData.swift; sourceTree = "<group>"; };
+		26333F3922024AF900C17FD5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				26333EDB21FF3D2E00C17FD5 /* futureMind_recruitmentTask */,
-				26333EF321FF3D3100C17FD5 /* futureMind_recruitmentTaskTests */,
-				26333EFE21FF3D3100C17FD5 /* futureMind_recruitmentTaskUITests */,
 				26333EDA21FF3D2E00C17FD5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,38 +119,22 @@
 		26333EDB21FF3D2E00C17FD5 /* futureMind_recruitmentTask */ = {
 			isa = PBXGroup;
 			children = (
-				26333F1921FFBEF200C17FD5 /* Extensions */,
+				26333F1421FF76BF00C17FD5 /* Models */,
 				26333F1721FF796100C17FD5 /* Views */,
-				26333F1321FF76B100C17FD5 /* Networking */,
-				26333F1421FF76BF00C17FD5 /* Model */,
 				26333F1821FFA2A200C17FD5 /* Controllers */,
+				26333F38220226C600C17FD5 /* Helpers */,
+				26333F1921FFBEF200C17FD5 /* Extensions */,
+				26333F1321FF76B100C17FD5 /* Networking */,
 				26333EDC21FF3D2E00C17FD5 /* AppDelegate.swift */,
+				26333F302201E44A00C17FD5 /* CoreDataStack.swift */,
+				26333EE321FF3D2E00C17FD5 /* futureMind_recruitmentTask.xcdatamodeld */,
 				26333EE021FF3D2E00C17FD5 /* Main.storyboard */,
 				26333EE621FF3D3100C17FD5 /* Assets.xcassets */,
 				26333F2A2200E9D100C17FD5 /* Colors.xcassets */,
 				26333EE821FF3D3100C17FD5 /* LaunchScreen.storyboard */,
 				26333EEB21FF3D3100C17FD5 /* Info.plist */,
-				26333EE321FF3D2E00C17FD5 /* futureMind_recruitmentTask.xcdatamodeld */,
 			);
 			path = futureMind_recruitmentTask;
-			sourceTree = "<group>";
-		};
-		26333EF321FF3D3100C17FD5 /* futureMind_recruitmentTaskTests */ = {
-			isa = PBXGroup;
-			children = (
-				26333EF421FF3D3100C17FD5 /* futureMind_recruitmentTaskTests.swift */,
-				26333EF621FF3D3100C17FD5 /* Info.plist */,
-			);
-			path = futureMind_recruitmentTaskTests;
-			sourceTree = "<group>";
-		};
-		26333EFE21FF3D3100C17FD5 /* futureMind_recruitmentTaskUITests */ = {
-			isa = PBXGroup;
-			children = (
-				26333EFF21FF3D3100C17FD5 /* futureMind_recruitmentTaskUITests.swift */,
-				26333F0121FF3D3100C17FD5 /* Info.plist */,
-			);
-			path = futureMind_recruitmentTaskUITests;
 			sourceTree = "<group>";
 		};
 		26333F1321FF76B100C17FD5 /* Networking */ = {
@@ -158,13 +146,13 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		26333F1421FF76BF00C17FD5 /* Model */ = {
+		26333F1421FF76BF00C17FD5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				26333F0D21FF3D8B00C17FD5 /* CellData.swift */,
-				26333F282200E1C100C17FD5 /* CachingKey.swift */,
+				26333F2C22010CD700C17FD5 /* DataModel+CoreDataClass.swift */,
+				26333F2D22010CD700C17FD5 /* DataModel+CoreDataProperties.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		26333F1721FF796100C17FD5 /* Views */ = {
@@ -178,8 +166,10 @@
 		26333F1821FFA2A200C17FD5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				26333EDE21FF3D2E00C17FD5 /* ViewController.swift */,
 				26333F1C2200700900C17FD5 /* BaseViewController.swift */,
+				26333EDE21FF3D2E00C17FD5 /* ViewController.swift */,
+				26333F34220219F100C17FD5 /* ViewControllerTableViewDelegate.swift */,
+				26333F3622021A2000C17FD5 /* ViewControllerCoreData.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -190,6 +180,16 @@
 				26333F1A21FFBF0800C17FD5 /* UIImageViewExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		26333F38220226C600C17FD5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				26333F282200E1C100C17FD5 /* CachingKey.swift */,
+				26333F3222020B6200C17FD5 /* JSONKeys.swift */,
+				26333F3922024AF900C17FD5 /* Colors.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,14 +326,20 @@
 			files = (
 				26333EE521FF3D2E00C17FD5 /* futureMind_recruitmentTask.xcdatamodeld in Sources */,
 				26333EDF21FF3D2E00C17FD5 /* ViewController.swift in Sources */,
+				26333F35220219F100C17FD5 /* ViewControllerTableViewDelegate.swift in Sources */,
 				26333EDD21FF3D2E00C17FD5 /* AppDelegate.swift in Sources */,
 				26333F1221FF41F100C17FD5 /* NetworkingManager.swift in Sources */,
-				26333F0E21FF3D8B00C17FD5 /* CellData.swift in Sources */,
 				26333F1D2200700900C17FD5 /* BaseViewController.swift in Sources */,
+				26333F312201E44A00C17FD5 /* CoreDataStack.swift in Sources */,
+				26333F2E22010CD700C17FD5 /* DataModel+CoreDataClass.swift in Sources */,
+				26333F3722021A2000C17FD5 /* ViewControllerCoreData.swift in Sources */,
+				26333F3A22024AFA00C17FD5 /* Colors.swift in Sources */,
 				26333F1621FF795D00C17FD5 /* DataTableViewCell.swift in Sources */,
 				26333F292200E1C100C17FD5 /* CachingKey.swift in Sources */,
 				26333F1B21FFBF0800C17FD5 /* UIImageViewExtension.swift in Sources */,
 				26333F1021FF3FD200C17FD5 /* Endpoint.swift in Sources */,
+				26333F2F22010CD700C17FD5 /* DataModel+CoreDataProperties.swift in Sources */,
+				26333F3322020B6200C17FD5 /* JSONKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +347,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26333EF521FF3D3100C17FD5 /* futureMind_recruitmentTaskTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +354,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26333F0021FF3D3100C17FD5 /* futureMind_recruitmentTaskUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

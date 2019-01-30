@@ -1,20 +1,17 @@
 //
-//  CellData.swift
+//  DataModel+CoreDataClass.swift
 //  futureMind_recruitmentTask
 //
-//  Created by Marcin Piwoński on 28/01/2019.
+//  Created by Marcin Piwoński on 29/01/2019.
 //  Copyright © 2019 Marcin Piwoński. All rights reserved.
 //
+//
 
-import UIKit
+import Foundation
+import CoreData
 
-class CellData : Codable {
-    
-    var fullDescription : String
-    var title : String
-    var modificationDateString : String
-    var orderId : Int
-    var imageUrlString : String
+@objc(DataModel)
+public class DataModel: NSManagedObject {
     
     var imageUrl : URL? {
         return URL(string: imageUrlString)
@@ -32,7 +29,6 @@ class CellData : Codable {
     }
     
     var urlString : String? {
-        //get the url
         guard let urlString = fullDescription.split(separator: "\t").last else {
             return nil
         }
@@ -40,14 +36,4 @@ class CellData : Codable {
         return String(urlString)
     }
     
-}
-
-extension CellData {
-    enum CodingKeys : String, CodingKey {
-        case fullDescription = "description"
-        case title = "title"
-        case modificationDateString = "modificationDate"
-        case orderId = "orderId"
-        case imageUrlString = "image_url"
-    }
 }
