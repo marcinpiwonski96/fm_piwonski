@@ -18,7 +18,6 @@ class DataTableViewCell: UITableViewCell {
             pictureView.layer.cornerRadius = 40
             pictureView.layer.borderWidth = 10
             pictureView.layer.borderColor = UIColor.gray.cgColor
-            print(pictureView.center)
         }
     }
     @IBOutlet weak var modifiedLabel: UILabel!
