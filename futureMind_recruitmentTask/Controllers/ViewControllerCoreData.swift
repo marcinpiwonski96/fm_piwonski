@@ -17,11 +17,12 @@ extension ViewController: NSFetchedResultsControllerDelegate{
         let context = CoreDataStack.shared.persistentContainer.viewContext
         
         let dataEntity = DataModel(context : context)
-        dataEntity.title = dictionary[JSONKeys.title.rawValue] as! String
-        dataEntity.modificationDate = dictionary[JSONKeys.modificationDate.rawValue] as! String
-        dataEntity.fullDescription = dictionary[JSONKeys.fullDescription.rawValue] as! String
-        dataEntity.imageUrlString = dictionary[JSONKeys.imageUrlString.rawValue] as! String
-        dataEntity.orderId = Int32(dictionary[JSONKeys.orderId.rawValue] as! Int)
+        dataEntity.title =
+        (dictionary[JSONKeys.title.rawValue] as? String) ?? "undefined"
+        dataEntity.modificationDate = (dictionary[JSONKeys.modificationDate.rawValue] as? String) ?? "undefined"
+        dataEntity.fullDescription = (dictionary[JSONKeys.fullDescription.rawValue] as? String) ?? "undefined"
+        dataEntity.imageUrlString = (dictionary[JSONKeys.imageUrlString.rawValue] as? String) ?? "undefined"
+        dataEntity.orderId = Int32((dictionary[JSONKeys.orderId.rawValue] as? Int) ?? 0)
         
         return dataEntity
     }
@@ -36,12 +37,32 @@ extension ViewController: NSFetchedResultsControllerDelegate{
         }
     }
     
+    func deleteStoredData(){
+        do {
+            let context = CoreDataStack.shared.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: DataModel.self))
+            do {
+                let objects  = try context.fetch(fetchRequest) as? [NSManagedObject]
+                _ = objects.map{ $0.map{ context.delete($0) } }
+                CoreDataStack.shared.saveContext()
+            } catch let error {
+                print("error deleting: \(error)")
+            }
+        }
+    }
+    
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert:
-            self.tableView.insertRows(at: [newIndexPath!], with: .automatic)
+            guard let newIndexPath = newIndexPath else {
+                return
+            }
+            self.tableView.insertRows(at: [newIndexPath], with: .automatic)
         case .delete:
-            self.tableView.deleteRows(at: [indexPath!], with: .automatic)
+            guard let indexPath = indexPath else{
+                return
+            }
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
         default:
             break
         }

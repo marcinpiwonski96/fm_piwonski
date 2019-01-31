@@ -55,7 +55,12 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource{
         guard let currentIndexPaths = tableView.indexPathsForVisibleRows else {
             return
         }
+        
+        guard !currentIndexPaths.isEmpty else {
+            return
+        }
         let indexPath = currentIndexPaths[0]
+        
         
         UIView.animate(withDuration: 0.1) {
             self.view.backgroundColor = indexPath.row % 2 == 0 ? Colors.accent : Colors.accent2

@@ -36,7 +36,7 @@ class ViewController: BaseViewController {
                 }
             }
         } catch let error  {
-            print("ERROR: \(error)")
+            print("error: \(error)")
         }
     }
     
@@ -62,7 +62,10 @@ class ViewController: BaseViewController {
             (result) in
             switch result{
             case .success(let data):
-                self.saveInCoreDataWithArray(array: data)
+                DispatchQueue.main.async {
+                    self.deleteStoredData()
+                    self.saveInCoreDataWithArray(array: data)
+                }
             case .failure(let error):
                 self.showAlertWithError(error)
             }

@@ -25,38 +25,44 @@ class ImageViewFromUrl : UIImageView {
         }
         
         guard let url = URL(string: cachingKey.urlString) else {
-            print("url not valid")
+            //not a valid url, couldn't download image
             return
         }
 
         let activityIndicator = UIActivityIndicatorView(style: .white)
-        activityIndicator.center = self.center
         activityIndicator.startAnimating()
         self.addSubview(activityIndicator)
+        activityIndicator.center = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
         
         URLSession.shared.dataTask(with: url, completionHandler: {
             (data, response, error) -> Void in
 
-                if error != nil {
-                    return
-                }
-                if let downloadedImage = UIImage(data: data!) {
+            if error != nil {
+                return
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            if let downloadedImage = UIImage(data: data) {
 
-                    DispatchQueue.main.async(execute: { () -> Void in
-                        if self.cachingKeyToCheck == cachingKey {
-                            self.image = downloadedImage
-                            self.alpha = 0
-                            UIView.animate(withDuration: 0.3, animations: {
-                                self.alpha = 1
-                            })
-                            activityIndicator.stopAnimating()
-                            activityIndicator.removeFromSuperview()
-                        }
-                    })
+                DispatchQueue.main.async(execute: { () -> Void in
+                    if self.cachingKeyToCheck == cachingKey {
+                        self.image = downloadedImage
+                        self.alpha = 0
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.alpha = 1
+                        })
+                        activityIndicator.stopAnimating()
+                        activityIndicator.removeFromSuperview()
+                    }
+                })
                     
-                    imageCache.setObject(downloadedImage, forKey: cachingKey.toNSStringCachingKey())
+                imageCache.setObject(downloadedImage, forKey: cachingKey.toNSStringCachingKey())
             }
             
         }).resume()
     }
+    
 }
